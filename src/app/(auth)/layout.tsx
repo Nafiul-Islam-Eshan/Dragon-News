@@ -1,5 +1,6 @@
 import Navbar from '@/components/shared/Navbar';
 import React from 'react';
+import { montserrat } from '../layout';
 
 interface AuthLayoutProps {
     children: React.ReactNode
@@ -7,7 +8,7 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
     return (
-        <div>
+        <div className={`${montserrat.className}`}>
 
             <Navbar />
 

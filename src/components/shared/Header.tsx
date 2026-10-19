@@ -11,8 +11,10 @@ const Header = () => {
             <p className="text-slate-500 text-lg ">Journalism Without Fear or Favour</p>
 
 
-           <p className="">
-            {format(new Date(), "EEEE, MMMM dd, yyyy")}
+           <p className="font-medium text-xl">
+            <span className="">{format(new Date(), "EEEE,")}</span>
+            <span className="text-slate-500">{format(new Date(), " MMMM dd, yyyy")}</span>
+            
            </p>
 
 

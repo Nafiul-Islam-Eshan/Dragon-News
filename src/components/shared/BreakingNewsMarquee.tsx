@@ -1,14 +1,79 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import Marquee from 'react-fast-marquee';
+
+const news = [
+    {
+        id: 1,
+        title: "Amazon Introduces TorchNeuron to Challenge Nvidia",
+        summary:
+            "Amazon introduced a tool that lets developers run PyTorch-based AI code on its Trainium chips with minimal code changes.",
+        category: "AI",
+        source: "Reuters",
+        publishedAt: "2026-10-19",
+        imageUrl: "",
+        url: "https://www.reuters.com/business/retail-consumer/amazon-says-its-ai-chips-will-work-with-popular-coding-language-challenging-nvidia-2026-10-19/",
+        isBreaking: true,
+    },
+    {
+        id: 2,
+        title: "US Orders Removal of DeepSeek from Civilian Government Systems",
+        summary:
+            "The US Department of Homeland Security restricted DeepSeek products in civilian government IT systems over security concerns.",
+        category: "Security",
+        source: "Reuters",
+        publishedAt: "2026-10-19",
+        imageUrl: "",
+        url: "https://www.reuters.com/technology/us-banning-chinese-ai-deepseek-government-agency-it-systems-2026-10-19/",
+        isBreaking: true,
+    },
+    {
+        id: 3,
+        title: "Nvidia CEO Urges German Industry to Adopt AI",
+        summary:
+            "Jensen Huang encouraged German manufacturers to use AI in robotics, vehicles, and industrial production.",
+        category: "Technology",
+        source: "Associated Press",
+        publishedAt: "2026-10-19",
+        imageUrl: "",
+        url: "https://apnews.com/article/f024c1e0d181677a19468657907a9025",
+        isBreaking: false,
+    },
+    {
+        id: 4,
+        title: "Software Upgrades Consume a Significant Share of IT Budgets",
+        summary:
+            "A survey found that large US and UK companies spend an average of 28% of software budgets on vendor-driven upgrades, migrations, and licensing changes.",
+        category: "Business",
+        source: "Reuters",
+        publishedAt: "2026-10-20",
+        imageUrl: "",
+        url: "https://www.reuters.com/business/software-upgrades-eat-nearly-third-companies-it-budgets-survey-finds-2026-10-20/",
+        isBreaking: false,
+    },
+];
+
+
+
 
 const BreakingNewsMarquee = () => {
     return (
-        <div className='flex
-        gap-2 p-4 bg-gray-100'>
-            <span className="py-3 px-6 rounded-sm bg-[#D72050] text-white">
+        <div className='flex gap-2 p-4 bg-gray-100'>
+            <Button variant={'destructive'} >
                 Latest
-            </span>
+            </Button>
             <Marquee pauseOnHover={true} className='font-medium text-lg'>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti veritatis, harum corporis eius nulla distinctio dolorum quae commodi quaerat eos vero aliquid voluptatibus, dolor mollitia assumenda sint at quod natus? Quos quas, excepturi dolor ea dolorum sit fugiat consectetur error assumenda velit! Laudantium, incidunt laborum? Praesentium hic ipsum dolor provident eum architecto quibusdam. Odio harum nostrum quas ullam eius quaerat cupiditate nisi fuga sint adipisci? Rem, cupiditate? Voluptas reiciendis quaerat, optio hic quas aut enim odio deserunt perferendis, quasi illum, vero recusandae sapiente magnam temporibus modi incidunt. Nulla enim placeat aliquid quia commodi! Commodi ut totam deserunt fuga modi rerum alias asperiores ducimus libero provident animi corporis facere consectetur officiis suscipit, explicabo maxime dolorum sit doloribus dicta quae? Pariatur officia velit quia tempora, assumenda eaque in ipsam quaerat incidunt facere hic perspiciatis, commodi, aperiam vero iusto quod magni maiores dicta. Doloribus animi quasi totam sint! Facilis aliquid necessitatibus omnis labore cumque id voluptas officia aliquam laudantium repellat porro rerum impedit, sunt maxime veritatis officiis quidem explicabo fugiat possimus molestias nisi quisquam velit iusto voluptates. Praesentium, id mollitia! Et quibusdam deleniti quisquam doloribus sed consequuntur esse ipsam velit! Ullam minus ipsa consequatur aperiam rerum. Nisi quaerat, unde, dolore cupiditate similique iste suscipit rem dicta commodi, quod vitae? Aperiam qui amet cum labore fugiat, veritatis veniam ea impedit, quo odit inventore tempora sapiente iure. Praesentium, doloremque soluta! Modi praesentium quo, vitae ut placeat repudiandae accusantium quasi fuga voluptate atque exercitationem voluptatibus, tempora itaque quia omnis neque, nihil libero? Velit voluptatum quod repellat.]
+                {
+                    news.map(n => {
+                        return <span key={n.id} >
+                            <Link
+                                className="mx-4 md:mx-6 lg:mx-10"
+                                href={n.url}>
+                                {n.title}  {"  "}
+                            </Link>
+                        </span>
+                    })
+                }
             </Marquee>
         </div>
     );

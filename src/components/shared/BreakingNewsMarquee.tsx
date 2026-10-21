@@ -62,7 +62,7 @@ const BreakingNewsMarquee = () => {
             <Button variant={'destructive'} >
                 Latest
             </Button>
-            <Marquee pauseOnHover={true} className='font-medium text-lg'>
+            <Marquee pauseOnHover={true} speed={150} className='font-medium text-lg'>
                 {
                     news.map(n => {
                         return <span key={n.id} >

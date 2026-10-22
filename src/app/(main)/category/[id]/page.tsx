@@ -8,31 +8,44 @@ type CategorizedNewsPageProps = {
 
 const CategorizedNewsPage = async ({ params }: CategorizedNewsPageProps) => {
 
-     const data = await newsCategories();
+    const data = await newsCategories();
 
-  const categories = data.data.news_category
+    const categories = data.data.news_category
 
     const { id } = await params;
 
     const news = await getNewsByCategoryId(id)
 
-    console.log(news);
+    // console.log(news);
 
     return (
         <div className="grid grid-cols-16 gap-5 my-10">
 
-      {/* All categories */}
-      <div className="col-span-3">
-       <LeftSidebar categories={categories} activeId="4" />
-      </div>
+            {/* All categories */}
+            <div className="col-span-3">
+                <LeftSidebar categories={categories} activeId="4" />
+            </div>
 
-      <div className="bg-lime-100 col-span-10">News</div>
+            {/* News */}
+            <div className="bg-lime-100 col-span-10">
+
+                <h2 className="text-xl mb-4 font-semibold">Dragon News Home</h2>
+
+                <ul className="flex flex-col gap-3">
+
+                    {
+                        news.news.map((n, i) => <li key={n?._id}> Title-{i+1}: {n?.title} </li>)
+                    }
+
+                </ul>
+
+            </div>
 
 
-      <div className=" col-span-3">
-        <RightSidebar/>
-      </div>
-    </div>
+            <div className=" col-span-3">
+                <RightSidebar />
+            </div>
+        </div>
     );
 };
 

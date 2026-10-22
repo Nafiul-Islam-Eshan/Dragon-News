@@ -23,7 +23,7 @@ const LeftSidebar = ({ categories, activeId }: LeftSidebarProps) => {
                   : ""
                 } font-semibold hover:bg-slate-300 duration-200 px-3 py-1.5 text-center rounded-2xl`}
             >
-              <Link className="block" href={`category/${category.category_id}`}> {category.category_name} </Link>
+              <Link className="block" href={`/category/${category.category_id}`}> {category.category_name} </Link>
             </li>)
         }
       </ul>

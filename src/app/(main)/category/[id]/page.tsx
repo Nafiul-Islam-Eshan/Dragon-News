@@ -23,7 +23,7 @@ const CategorizedNewsPage = async ({ params }: CategorizedNewsPageProps) => {
 
             {/* All categories */}
             <div className="col-span-3">
-                <LeftSidebar categories={categories} activeId="4" />
+                <LeftSidebar categories={categories} activeId={id} />
             </div>
 
             {/* News */}

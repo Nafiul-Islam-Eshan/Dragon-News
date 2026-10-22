@@ -23,7 +23,7 @@ const Navbar = () => {
             
             <ul className="flex gap-3 ">
                 {
-                    navLinks.map((navLink, i) => <li key={i} className="hover:text-blue-500 transition-all duration-300 text-lg">
+                    navLinks.map((navLink, i) => <li key={i} className="hover:text-blue-500 transition-all duration-300">
                         <NavLink href={navLink.url}> {navLink.name} </NavLink>
                     </li>)
                 }

@@ -1,4 +1,5 @@
 import LeftSidebar from "@/components/Homepage/news/LeftSidebar";
+import NewsCard from "@/components/Homepage/news/NewsCard";
 import RightSidebar from "@/components/Homepage/news/RightSidebar";
 import { getNewsByCategoryId, newsCategories } from "@/lib/newsCategories";
 
@@ -16,7 +17,6 @@ const CategorizedNewsPage = async ({ params }: CategorizedNewsPageProps) => {
 
     const news = await getNewsByCategoryId(id)
 
-    // console.log(news);
 
     return (
         <div className="grid grid-cols-16 gap-5 my-10">
@@ -35,9 +35,9 @@ const CategorizedNewsPage = async ({ params }: CategorizedNewsPageProps) => {
 
                     {
                         news?.news?.length > 0 ? (
-                            news.news.map((n, i) => <li key={n?._id}> Title-{i+1}: {n?.title} </li>)
+                            news.news.map((n, i) => <NewsCard key={i} news={n} />)
                         ):(
-                            <p>No news found </p>
+                            <p className="font-semibold text-2xl text-rose-600">No news found 🥲 </p>
                         )       
                     }
 

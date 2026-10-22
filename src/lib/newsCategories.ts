@@ -19,7 +19,7 @@ export const newsCategories = async (): Promise<newsCategoriesType> => {
     return data;
 }
 
-type News = {
+export type News = {
     _id: string
     category_id: string
     total_view: number

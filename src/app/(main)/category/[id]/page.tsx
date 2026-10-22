@@ -27,14 +27,18 @@ const CategorizedNewsPage = async ({ params }: CategorizedNewsPageProps) => {
             </div>
 
             {/* News */}
-            <div className="bg-lime-100 col-span-10">
+            <div className="col-span-10">
 
                 <h2 className="text-xl mb-4 font-semibold">Dragon News Home</h2>
 
                 <ul className="flex flex-col gap-3">
 
                     {
-                        news.news.map((n, i) => <li key={n?._id}> Title-{i+1}: {n?.title} </li>)
+                        news?.news?.length > 0 ? (
+                            news.news.map((n, i) => <li key={n?._id}> Title-{i+1}: {n?.title} </li>)
+                        ):(
+                            <p>No news found </p>
+                        )       
                     }
 
                 </ul>

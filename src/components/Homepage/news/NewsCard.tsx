@@ -5,12 +5,12 @@ import { format } from "date-fns/fp";
 import { Bookmark, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaEye, FaRegStar, FaStar } from "react-icons/fa";
 
 
 const NewsCard = ({ news }: { news: News }) => {
 
-    const { author, title, details, image_url, _id, rating } = news
+    const { author, title, details, image_url, _id, rating, total_view } = news
 
     const formatedDate = format('yyyy-MM-dd', new Date(author.published_date))
 
@@ -58,7 +58,8 @@ const NewsCard = ({ news }: { news: News }) => {
 
             </CardContent>
 
-            <CardFooter>
+            <CardFooter className="flex justify-between">
+                {/* Stars */}
                 <div className="flex gap-1 items-center">
                     {
                         Array.from(
@@ -70,6 +71,12 @@ const NewsCard = ({ news }: { news: News }) => {
                     
                     
                     <span className="">{rating.number}</span>
+                </div>
+
+                {/* Views */}
+                <div className="flex gap-1 items-center">
+                    <FaEye size='17'/>
+                    {total_view}
                 </div>
             </CardFooter>
         </Card>

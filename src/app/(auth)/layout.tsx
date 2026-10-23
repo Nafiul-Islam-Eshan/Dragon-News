@@ -8,9 +8,9 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
     return (
-        <div className={`${montserrat.className}`}>
+        <div className={`${montserrat.className} bg-gray-100 min-h-screen`}>
 
-            <Navbar />
+            <Navbar className='bg-gray-100' />
 
             {children}
 

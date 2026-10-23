@@ -3,6 +3,7 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { getNewsDetailsById } from "@/lib/newsCategories";
 import { format } from "date-fns/fp";
 import { ArrowLeft, Bookmark, Share2 } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaEye, FaRegStar, FaStar } from "react-icons/fa";
@@ -14,6 +15,25 @@ type NewsDetailsPageType = {
     }
 }
 
+type Props = {
+  params: Promise<{ id: string }>
+}
+
+export async function generateMetadata ({params}:Props){
+
+    const {id} = await params
+
+    const data = await getNewsDetailsById(id)
+    const news = data?.data[0]
+
+    return {
+    title: news?.title,
+    description: news?.details,
+  }
+    
+}
+
+
 const NewsDetailsPage = async ({params}: NewsDetailsPageType) => {
 
     const {id} = await params
@@ -22,7 +42,7 @@ const NewsDetailsPage = async ({params}: NewsDetailsPageType) => {
 
     const newsDetails = data?.data[0]
     
-    const {author, _id, details, image_url, total_view, title, rating, category_id} = newsDetails
+    const {author, details, image_url, total_view, title, rating, category_id} = newsDetails
 
     const formatedDate = format('yyyy-MM-dd', new Date(author.published_date))
     

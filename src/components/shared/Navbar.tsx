@@ -17,9 +17,9 @@ const navLinks : navLinkType[] = [
 ]
 
 
-const Navbar = () => {
+const Navbar = ({className}: {className?:string}) => {
     return (
-        <div className="mt-9 mx-auto flex justify-center relative items-center">
+        <div className={`pt-9 mx-auto flex justify-center relative items-center ${className}`}>
             
             <ul className="flex gap-3 ">
                 {

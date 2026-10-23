@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { News } from "@/lib/newsCategories";
 import { format } from "date-fns/fp";
 import { Bookmark, Share2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 
 const NewsCard = ({ news }: { news: News }) => {
 
-    const { author, title, details, image_url, _id } = news
+    const { author, title, details, image_url, _id, rating } = news
 
     const formatedDate = format('yyyy-MM-dd', new Date(author.published_date))
 
@@ -50,12 +51,27 @@ const NewsCard = ({ news }: { news: News }) => {
                     {details}
                 </CardDescription>
 
-                
-                <Link href={`/news/${_id}`}  
-                 className='relative bg-linear-to-r from-[#FF8C47] to-[#F75B5F] font-bold bg-clip-text text-transparent after:absolute after:bottom-0 after:left-0 after:origin-center after:h-0.5 after:w-full after:bg-linear-to-r after:from-[#FF8C47] after:to-[#F75B5F] after:scale-0 hover:after:scale-100 after:transition-all duration-250 ease-in'>Read More</Link>
+
+                <Link href={`/news/${_id}`}
+                    className='relative bg-linear-to-r from-[#FF8C47] to-[#F75B5F] font-bold bg-clip-text text-transparent after:absolute after:bottom-0 after:left-0 after:origin-center after:h-0.5 after:w-full after:bg-linear-to-r after:from-[#FF8C47] after:to-[#F75B5F] after:scale-0 hover:after:scale-100 after:transition-all duration-250 ease-in'>Read More</Link>
 
 
             </CardContent>
+
+            <CardFooter>
+                <div className="flex gap-1 items-center">
+                    {
+                        Array.from(
+                            {length:5},
+                            (_, i) => Math.ceil(rating.number) >= i+1 ? <FaStar  key={i} size='16' className="text-orange-400 font-bold" /> :  <FaRegStar  key={i} size='16' className="text-orange-400 font-bold" /> 
+                        )
+                        
+                    }
+                    
+                    
+                    <span className="">{rating.number}</span>
+                </div>
+            </CardFooter>
         </Card>
     );
 };

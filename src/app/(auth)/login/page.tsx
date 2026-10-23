@@ -23,10 +23,10 @@ export default function LoginPage() {
 
     const {register, handleSubmit, formState:{errors}} = useForm<Inputs>()
 
-    console.log(errors);
+    // console.log(errors);
 
     const handleLoginForm : SubmitHandler<Inputs> = (data) =>{
-        console.log({data});
+        // console.log({data});
     }
 
     return (
@@ -34,6 +34,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit(handleLoginForm)} >
 
             <FieldGroup className="max-w-150 mx-auto my-10 max-h-90 bg-white p-10 rounded-xl flex items-center justify-center">
+                <h2 className="text-center text-xl font-semibold">Login your account</h2>
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-email">Email</FieldLabel>
                     <Input 

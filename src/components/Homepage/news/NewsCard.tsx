@@ -52,8 +52,9 @@ const NewsCard = ({ news }: { news: News }) => {
                 </CardDescription>
 
 
-                <Link href={`/news/${_id}`}
-                    className='relative bg-linear-to-r from-[#FF8C47] to-[#F75B5F] font-bold bg-clip-text text-transparent after:absolute after:bottom-0 after:left-0 after:origin-center after:h-0.5 after:w-full after:bg-linear-to-r after:from-[#FF8C47] after:to-[#F75B5F] after:scale-0 hover:after:scale-100 after:transition-all duration-250 ease-in'>Read More</Link>
+                <Button render={<Link href={`/news/${_id}`} />}
+                    variant={'newsLink'}
+                >Read More</Button>
 
 
             </CardContent>
@@ -63,19 +64,19 @@ const NewsCard = ({ news }: { news: News }) => {
                 <div className="flex gap-1 items-center">
                     {
                         Array.from(
-                            {length:5},
-                            (_, i) => Math.ceil(rating.number) >= i+1 ? <FaStar  key={i} size='17' className="text-orange-400 font-bold mr-1" /> :  <FaRegStar  key={i} size='17' className="text-orange-400 font-bold mr-1" /> 
+                            { length: 5 },
+                            (_, i) => Math.ceil(rating.number) >= i + 1 ? <FaStar key={i} size='17' className="text-orange-400 font-bold mr-1" /> : <FaRegStar key={i} size='17' className="text-orange-400 font-bold mr-1" />
                         )
-                        
+
                     }
-                    
-                    
+
+
                     <span className="">{rating.number}</span>
                 </div>
 
                 {/* Views */}
                 <div className="flex gap-1 items-center">
-                    <FaEye size='17'/>
+                    <FaEye size='17' />
                     {total_view}
                 </div>
             </CardFooter>

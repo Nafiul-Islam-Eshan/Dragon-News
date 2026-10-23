@@ -17,6 +17,7 @@ const buttonVariants = cva(
         destructive:
           "py-3 px-6 rounded-sm bg-[#D72050] text-white",
         link: "text-primary underline-offset-4 hover:underline",
+        newsLink: 'relative bg-linear-to-r from-[#FF8C47] to-[#F75B5F] font-bold bg-clip-text text-transparent after:absolute after:bottom-0 after:left-0 after:origin-center after:h-0.5 after:w-full after:bg-linear-to-r after:from-[#FF8C47] after:to-[#F75B5F] after:scale-0 hover:after:scale-100 after:transition-all duration-250 ease-in'
       },
       size: {
         default:

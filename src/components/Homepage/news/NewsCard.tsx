@@ -63,7 +63,7 @@ const NewsCard = ({ news }: { news: News }) => {
                     {
                         Array.from(
                             {length:5},
-                            (_, i) => Math.ceil(rating.number) >= i+1 ? <FaStar  key={i} size='16' className="text-orange-400 font-bold" /> :  <FaRegStar  key={i} size='16' className="text-orange-400 font-bold" /> 
+                            (_, i) => Math.ceil(rating.number) >= i+1 ? <FaStar  key={i} size='17' className="text-orange-400 font-bold mr-1" /> :  <FaRegStar  key={i} size='17' className="text-orange-400 font-bold mr-1" /> 
                         )
                         
                     }

@@ -10,24 +10,28 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
-import React from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { GrCircleAlert } from "react-icons/gr"
+
+type Inputs = {
+  password: string
+  email: string
+}
+
 
 export default function LoginPage() {
 
-    const handleLoginForm = (e:React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const {register, handleSubmit, formState:{errors}} = useForm<Inputs>()
 
-        const formData = new FormData(e.currentTarget);
-        const email = formData.get("email");
-        const password = formData.get("password");
-        console.log({email, password});
+    console.log(errors);
 
+    const handleLoginForm : SubmitHandler<Inputs> = (data) =>{
+        console.log({data});
     }
-
 
     return (
 
-        <form onSubmit={handleLoginForm} >
+        <form onSubmit={handleSubmit(handleLoginForm)} >
 
             <FieldGroup className="max-w-150 mx-auto my-10 max-h-90 bg-white p-10 rounded-xl flex items-center justify-center">
                 <Field>
@@ -35,22 +39,37 @@ export default function LoginPage() {
                     <Input 
                         id="fieldgroup-email" 
                         placeholder="Email" 
-                        name="email"
-                        className="bg-gray-200 " />
+                        className="bg-gray-200 "
+                        {...register("email", {
+                            required:"Email is mandatory",
+                        } )}
+                     />
+                     
+                     {
+                        errors.email && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert/> {errors.email?.message}</FieldDescription>
+                    }
+
                 </Field>
+
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
                     <Input
                         id="fieldgroup-password"
                         type="password"
                         placeholder="Password"
-                        name="password"
                         className="bg-gray-200 "
+                        {...register("password", {
+                            required:"Password is mandatory",
+                            minLength:4
+                        })}
                     />
-                    <FieldDescription>
-                        We&apos;ll send updates to this address.
-                    </FieldDescription>
+
+                    {
+                        errors.password && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert/> {errors.password.message}</FieldDescription>
+                    }
+
                 </Field>
+
                 <Field orientation="horizontal">
                     <Button className={`w-full`} type="submit">Submit</Button>
                 </Field>

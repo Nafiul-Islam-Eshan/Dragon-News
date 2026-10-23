@@ -2,6 +2,13 @@ import LeftSidebar from "@/components/Homepage/news/LeftSidebar";
 import NewsCard from "@/components/Homepage/news/NewsCard";
 import RightSidebar from "@/components/Homepage/news/RightSidebar";
 import { getNewsByCategoryId, newsCategories } from "@/lib/newsCategories";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: 'Daily News ',
+  description: 'Explore what is happening over the world with Dragon News. Get the latest news, updates, and insights on various topics from around the globe.',
+}
 
 type CategorizedNewsPageProps = {
     params: Promise<{ id: string }>

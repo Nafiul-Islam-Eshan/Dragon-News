@@ -55,3 +55,20 @@ export async function getNewsByCategoryId(category_id: string): Promise<getNewsB
     const data = await res.json();
     return data;
 }
+
+
+
+
+type getNewsDetailsByIdType={
+    status: boolean
+    data: News[]
+}
+
+
+
+export async function getNewsDetailsById(news_id: string):Promise<getNewsDetailsByIdType>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+    const res = await fetch(url)
+    const data = await res.json();
+    return data;
+}

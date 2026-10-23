@@ -1,3 +1,4 @@
+import { getNewsDetailsById } from "@/lib/newsCategories";
 
 type NewsDetailsPageType = {
     
@@ -9,7 +10,12 @@ type NewsDetailsPageType = {
 const NewsDetailsPage = async ({params}: NewsDetailsPageType) => {
 
     const {id} = await params
-    console.log(id);
+
+    const data = await getNewsDetailsById(id);
+
+    const newsDetails = data?.data[0]
+    
+    console.log(newsDetails);
     
     return (
         <div>

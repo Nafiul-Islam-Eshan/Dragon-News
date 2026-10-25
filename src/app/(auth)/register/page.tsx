@@ -10,6 +10,7 @@ import {
     FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { authClient } from "@/lib/auth-client"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { GrCircleAlert } from "react-icons/gr"
 
@@ -28,8 +29,23 @@ export default function RegisterPage() {
 
     // console.log(errors);
 
-    const handleLoginForm: SubmitHandler<Inputs> = (data) => {
-        // console.log(data);
+    const handleLoginForm: SubmitHandler<Inputs> = async (data) => {
+        const { data:regData , error } = await authClient.signUp.email({
+            name: data.name, // required, The name of the user.
+            email: data.email, // required, The email address of the user.
+            password:data.password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
+            image: data.photoURL, // An optional profile image of the user.
+            callbackURL: "/category/1", // An optional URL to redirect to after the user signs up.
+        });
+        console.log({regData, error});
+
+        if(error){
+            alert(error?.message)
+        }
+
+        if(regData){
+            alert("Registration Successfull");
+        }
     }
 
     return (
@@ -79,7 +95,7 @@ export default function RegisterPage() {
                 </Field>
 
 
-                    {/* Email */}
+                {/* Email */}
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-email">Email</FieldLabel>
                     <Input
@@ -99,7 +115,7 @@ export default function RegisterPage() {
                 </Field>
 
 
-                    {/* Password */}
+                {/* Password */}
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
                     <Input
@@ -120,7 +136,7 @@ export default function RegisterPage() {
                 </Field>
 
 
-                    {/* Terms and conditions */}
+                {/* Terms and conditions */}
                 {/* <Field orientation="horizontal">
                     <Checkbox
                         id="checkout-7j9-same-as-shipping-wgm"

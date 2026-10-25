@@ -35,7 +35,7 @@ export default function RegisterPage() {
             email: data.email, // required, The email address of the user.
             password:data.password, // required, The password of the user. It should be at least 8 characters long and max 128 by default.
             image: data.photoURL, // An optional profile image of the user.
-            callbackURL: "/category/1", // An optional URL to redirect to after the user signs up.
+            callbackURL: "/category/0", // An optional URL to redirect to after the user signs up.
         });
         console.log({regData, error});
 

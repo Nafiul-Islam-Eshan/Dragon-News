@@ -9,6 +9,7 @@ import {
     FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { GrCircleAlert } from "react-icons/gr"
@@ -23,10 +24,24 @@ export default function LoginPage() {
 
     const {register, handleSubmit, formState:{errors}} = useForm<Inputs>()
 
-    // console.log(errors);
 
-    const handleLoginForm : SubmitHandler<Inputs> = (data) =>{
-        // console.log({data});
+    const handleLoginForm : SubmitHandler<Inputs> = async (data) =>{
+        const {data:loginData, error} = await authClient.signIn.email({
+            email:data.email,
+            password: data.password,
+            rememberMe: true,
+            callbackURL: '/category/0'
+        })
+
+        console.log({loginData, error});
+
+        if(error){
+            alert(error?.message);
+        }
+
+        if(loginData){
+            alert("Login Successful");
+        }
     }
 
     return (

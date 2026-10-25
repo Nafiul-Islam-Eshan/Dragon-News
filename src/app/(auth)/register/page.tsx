@@ -26,10 +26,10 @@ export default function RegisterPage() {
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
 
-    console.log(errors);
+    // console.log(errors);
 
     const handleLoginForm: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+        // console.log(data);
     }
 
     return (
@@ -79,6 +79,7 @@ export default function RegisterPage() {
                 </Field>
 
 
+                    {/* Email */}
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-email">Email</FieldLabel>
                     <Input
@@ -97,6 +98,8 @@ export default function RegisterPage() {
 
                 </Field>
 
+
+                    {/* Password */}
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
                     <Input
@@ -116,6 +119,8 @@ export default function RegisterPage() {
 
                 </Field>
 
+
+                    {/* Terms and conditions */}
                 {/* <Field orientation="horizontal">
                     <Checkbox
                         id="checkout-7j9-same-as-shipping-wgm"

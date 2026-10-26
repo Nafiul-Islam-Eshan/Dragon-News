@@ -24,7 +24,6 @@ const navLinks: navLinkType[] = [
 const Navbar = ({ className }: { className?: string }) => {
 
     const { data: session, isPending, refetch } = useSession()
-    const router = useRouter()
     const userInfo = session?.user
 
     const handleSignOut = async () => {

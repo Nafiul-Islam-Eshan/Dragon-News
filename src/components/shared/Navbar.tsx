@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import NavLink from "./NavLink";
 import { authClient, useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 interface navLinkType {
     name: string,
@@ -22,8 +23,20 @@ const navLinks: navLinkType[] = [
 
 const Navbar = ({ className }: { className?: string }) => {
 
-    const { data: session, isPending } = useSession()
+    const { data: session, isPending, refetch } = useSession()
+    const router = useRouter()
     const userInfo = session?.user
+
+    const handleSignOut = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: async () => {
+                    await refetch();
+                },
+            },
+
+        })
+    }
 
 
     return (
@@ -50,7 +63,7 @@ const Navbar = ({ className }: { className?: string }) => {
                             <Image src={userInfo?.image || user} alt="User Avater" height={50} width={50} className="rounded-full w-10 h-10 object-cover" />
                             <Button variant={'destructive'}
                                 className='px-3' size={'lg'}
-                                onClick={async()=> await authClient.signOut()}
+                                onClick={handleSignOut}
 
                             >Logout
 

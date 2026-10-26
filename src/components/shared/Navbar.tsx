@@ -25,7 +25,6 @@ const Navbar = ({ className }: { className?: string }) => {
     const { data: session, isPending } = useSession()
     const userInfo = session?.user
 
-    // console.log(isPending);
 
     return (
         <div className={`pt-9 mx-auto flex justify-center relative items-center ${className}`}>
@@ -61,7 +60,8 @@ const Navbar = ({ className }: { className?: string }) => {
                         <div className="absolute right-5 flex gap-2 items-center">
 
                             <Button render={<Link href='/login' />}
-                                className='px-3' size={'lg'}>Login</Button>
+                                className='px-3' size={'lg'}>Login
+                            </Button>
                         </div>
                     )
             }

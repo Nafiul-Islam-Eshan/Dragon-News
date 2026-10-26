@@ -11,35 +11,37 @@ import {
 import { Input } from "@/components/ui/input"
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
+import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { GrCircleAlert } from "react-icons/gr"
 
 type Inputs = {
-  password: string
-  email: string
+    password: string
+    email: string
 }
 
 
 export default function LoginPage() {
 
-    const {register, handleSubmit, formState:{errors}} = useForm<Inputs>()
+    const [isVisible, setIsVisible] = useState(false)
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
 
 
-    const handleLoginForm : SubmitHandler<Inputs> = async (data) =>{
-        const {data:loginData, error} = await authClient.signIn.email({
-            email:data.email,
+    const handleLoginForm: SubmitHandler<Inputs> = async (data) => {
+        const { data: loginData, error } = await authClient.signIn.email({
+            email: data.email,
             password: data.password,
             rememberMe: true,
             callbackURL: '/category/0'
         })
 
-        console.log({loginData, error});
+        console.log({ loginData, error });
 
-        if(error){
+        if (error) {
             alert(error?.message);
         }
 
-        if(loginData){
+        if (loginData) {
             alert("Login Successful");
         }
     }
@@ -52,36 +54,39 @@ export default function LoginPage() {
                 <h2 className="text-center text-xl font-semibold">Login your account</h2>
                 <Field>
                     <FieldLabel htmlFor="fieldgroup-email">Email</FieldLabel>
-                    <Input 
-                        id="fieldgroup-email" 
-                        placeholder="Email" 
+                    <Input
+                        id="fieldgroup-email"
+                        placeholder="Email"
                         className="bg-gray-200 "
                         {...register("email", {
-                            required:"Email is mandatory",
-                        } )}
-                     />
-                     
-                     {
-                        errors.email && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert/> {errors.email?.message}</FieldDescription>
-                    }
-
-                </Field>
-
-                <Field>
-                    <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
-                    <Input
-                        id="fieldgroup-password"
-                        type="password"
-                        placeholder="Password"
-                        className="bg-gray-200 "
-                        {...register("password", {
-                            required:"Password is mandatory",
-                            minLength:4
+                            required: "Email is mandatory",
                         })}
                     />
 
                     {
-                        errors.password && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert/> {errors.password.message}</FieldDescription>
+                        errors.email && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert /> {errors.email?.message}</FieldDescription>
+                    }
+
+                </Field>
+
+                <Field className="relative">
+                    <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
+                    <Input
+                        id="fieldgroup-password"
+                        type={isVisible ? "text" : "password"}
+                        placeholder="Password"
+                        className="bg-gray-200 "
+                        {...register("password", {
+                            required: "Password is mandatory",
+                            minLength: 4
+                        })}
+                    />
+                    <p onClick={() => setIsVisible(!isVisible)} className="absolute -right-115 top-9">
+                        {isVisible ? 'Hide' : 'Show'}
+                    </p>
+
+                    {
+                        errors.password && <FieldDescription className="flex gap-1 items-center text-sm text-rose-600"> <GrCircleAlert /> {errors.password.message}</FieldDescription>
                     }
 
                 </Field>
